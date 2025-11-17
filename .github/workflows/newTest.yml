@@ -7,19 +7,25 @@ on:
 
 jobs:
   cypress-allure:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (23.11.0)
+      - name: Setup Node.js 23.11.0
         uses: actions/setup-node@v4
         with:
           node-version: "23.11.0"
 
       - name: Install dependencies
         run: npm install
+
+      - name: Install Cypress Binary
+        run: npx cypress install
+
+      - name: Fix Cypress Permissions
+        run: chmod +x ./node_modules/.bin/cypress
 
       - name: Run Cypress tests with Allure
         run: npm run test:allure
