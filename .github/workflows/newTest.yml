@@ -31,5 +31,9 @@ jobs:
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
+          browser: chrome
+          headless: true
+          record: true
+          parallel: true
           name: allure-report
           path: allure-report
