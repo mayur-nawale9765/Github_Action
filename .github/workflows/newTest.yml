@@ -23,15 +23,15 @@ jobs:
       - name: Install NPM dependencies
         run: npm ci
         
-      - name: Run Cypress tests (Allure enabled)
-        run: npm run test:allure
+      # - name: Run Cypress tests (Allure enabled)
+      #   run: npm run test:allure
 
 
       - name: Verify Cypress
         run: npx cypress verify
 
-      # - name: Run Cypress tests (Allure enabled)
-      #   run: npm run test:allure
+      - name: Run Cypress tests (Allure enabled)
+        run: npm run test:allure
 
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
