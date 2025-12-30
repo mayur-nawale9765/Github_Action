@@ -8,6 +8,7 @@ cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 Login.setUserName(data.username);
 Login.setPassword(data.password)
 Login.clickSubmit();
-Login.verifyLogin();
+Login.verifyLogin();  
+
 })
 })
