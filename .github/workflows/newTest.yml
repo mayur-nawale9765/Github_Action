@@ -1,3 +1,55 @@
+# name: Cypress Tests with Allure
+
+# on:
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+
+# jobs:
+#   cypress:
+#     runs-on: ubuntu-latest
+#     strategy:
+#        fail-fast: false
+#     matrix: 
+#        browsers: [chrome, firefox, edge]
+     
+
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node.js (Cypress Supported)
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           browsers: ${{matrix.browsers}}
+#           command: npx cypress run --browser ${{matrix.browsers}}
+          
+
+#       - name: Install NPM dependencies
+#         run: npm ci
+        
+#       # - name: Run Cypress tests (Allure enabled)
+#       #   run: npm run test:allure
+
+
+#       - name: Verify Cypress
+#         run: npx cypress verify
+
+#       - name: Run Cypress tests (Allure enabled)
+#         run: run: npm run test:allure -- --browser ${{ matrix.browser }}
+
+
+#       - name: Upload Allure Report
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: allure-report
+#           path: allure-report
+
+
+
+
 name: Cypress Tests with Allure
 
 on:
@@ -9,39 +61,36 @@ on:
 jobs:
   cypress:
     runs-on: ubuntu-latest
+
     strategy:
-       fail-fast: false
-    matrix: 
-       browsers: [chrome, firefox, edge]
-     
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox, edge]
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (Cypress Supported)
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          browsers: ${{matrix.browsers}}
-          command: npx cypress run --browser ${{matrix.browsers}}
-          
 
-      - name: Install NPM dependencies
+      - name: Install dependencies
         run: npm ci
-        
-      # - name: Run Cypress tests (Allure enabled)
-      #   run: npm run test:allure
-
 
       - name: Verify Cypress
         run: npx cypress verify
 
-      - name: Run Cypress tests (Allure enabled)
-        run: npm run test:allure
+      - name: Run Cypress tests on ${{ matrix.browser }}
+        run: npx cypress run --browser ${{ matrix.browser }}
 
-      - name: Upload Allure Report
+      # OR if Allure is wired via npm script
+      # - name: Run Cypress tests with Allure
+      #   run: npm run test:allure -- --browser ${{ matrix.browser }}
+
+      - name: Upload Allure Results
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
-          path: allure-report
+          name: allure-results-${{ matrix.browser }}
+          path: allure-results
