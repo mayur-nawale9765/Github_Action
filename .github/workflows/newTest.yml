@@ -23,6 +23,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          browsers: ${{matrix.browsers}}
+          command: npx cypress run --browser ${{matrix.browsers}}
           
 
       - name: Install NPM dependencies
