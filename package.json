@@ -3,18 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:registerPage": "npx cypress run --spec cypress/e2e/step-definiton/register-page.cy.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test:allure": "npx cypress run --env allure=true && npx allure generate allure-results --clean -o allure-report",
-    "allure:open": "npx allure open allure-report",
-    "generate:report":"npm run test:allure && npm run allure:open"
-  },
+  "clean:allure": "npx rimraf allure-results allure-report",
+
+  "test:registerPage": "npx cypress run --spec cypress/e2e/step-definiton/register-page.cy.js",
+
+  "test:allure": "npm run clean:allure && npx cypress run --env allure=true; npx allure generate allure-results -o allure-report",
+
+  "allure:open": "npx allure open allure-report",
+
+  "generate:report": "npm run test:allure && npm run allure:open"
+},
+
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@shelex/cypress-allure-plugin": "^2.41.2",
     "allure-commandline": "^2.34.1",
-    "cypress": "^14.5.4"
+    "cypress": "^15.8.1",
+    "rimraf": "^6.1.2"
   }
 }

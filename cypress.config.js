@@ -11,6 +11,7 @@ module.exports = defineConfig({
     specPattern: "cypress/e2e/**/*.cy.js"
   },
   env:{
-    URL:'https://naveenautomationlabs.com/opencart/index.php?route=account/register'
+    URL:'https://naveenautomationlabs.com/opencart/index.php?route=account/register',
+    allure:true
   }
 });
