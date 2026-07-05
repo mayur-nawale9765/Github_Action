@@ -4,7 +4,8 @@ import data from'../../fixtures/orangeHRM.json'
 
 describe('pom',()=>{
 it.only('login test',()=>{
-cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+// cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+cy.visit(Cypress.env('dev'))
 Login.setUserName(data.username);
 Login.setPassword(data.password)
 Login.clickSubmit();

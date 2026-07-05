@@ -13,7 +13,7 @@ class Login{
     cy.get(this.txtPassword).type(password)
     }
     clickSubmit(){
-    cy.get(this.btnSubmit).click() 
+    cy.get(this.btnSubmit).click();
     }
     verifyLogin(){
     cy.get(this.lblmsg).should('have.text','Dashboard')

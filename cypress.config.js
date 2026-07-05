@@ -12,6 +12,8 @@ module.exports = defineConfig({
   },
   env:{
     URL:'https://naveenautomationlabs.com/opencart/index.php?route=account/register',
-    allure:true
+    // allure:true,
+    dev: "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    // qa: "https://qa.example.com"
   }
 });
